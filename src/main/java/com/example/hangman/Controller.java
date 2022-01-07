@@ -70,6 +70,9 @@ public class Controller {
     private Label labeltries;
 
     @FXML
+    private Label labelDefeats;
+
+    @FXML
     private Label labelwins;
 
     @FXML
@@ -151,10 +154,12 @@ public class Controller {
     public void ShowRounds(ActionEvent event) throws IOException {
         ArrayList<RoundStats> list1 = lastfivegames.getlastfivegames();
         int wins = 0;
+        int defeats = 0;
         int tries = 0;
         int highScore = 0;
         for ( RoundStats plp : list1) {
             wins = plp.getwins() + wins;
+            defeats = plp.getdefeats() + defeats;
             tries = plp.gettries() + tries;
             if(highScore < plp.gethighscore()){
                 highScore = plp.gethighscore();
@@ -162,6 +167,7 @@ public class Controller {
             listviewselectedwords.getItems().add(plp.getselectedwords());
         }
         labeltries.setText(String.valueOf(tries));
+        labelDefeats.setText(String.valueOf(defeats));
         labelwins.setText(String.valueOf(wins));
         highscore.setText(String.valueOf(highScore));
     }
@@ -196,8 +202,11 @@ public class Controller {
             imageHangman.setImage(image0);
             points = 0;
             labelPoints.setText(String.valueOf(points));
-            lastfivegames.addlastfivegames(S, Tries, 0, points);
+            lastfivegames.addlastfivegames(S, Tries, 0, 1, points);
             statusChoose.setText("You lost");
+        }
+        else{
+            statusChoose.setText("There is not a word");
         }
     }
     public void Exit(ActionEvent event) throws IOException {
@@ -209,108 +218,114 @@ public class Controller {
             String[] splited = text.split("\\W+");
             if (splited[0] == null || splited[1] == null) {
                 statusChoose.setText("You need to write the position and a letter");
+                return ;
             }
-
-            try {
-                int number = Integer.parseInt(splited[0]);
-                char character = word.showWord().charAt(number-1);
-                if (number <= 0 || number > word.hiddenWord().length()) {
-                    statusChoose.setText("there is not this position");
-                }
-                else if(character != '_'){
-                    statusChoose.setText("You already find this position");
-                }
-                else if(splited[1].length()!=1){
-                    statusChoose.setText("You need a letter");
-                }
-                else {
-                    Tries = Tries + 1;
-                    statusChoose.setText(" ");
-                    splited[1] = splited[1].toUpperCase();
-                    boolean temp = FindLetter.find(word.hiddenWord(), splited[1], number-1); //check if the letter is correct
-                    if(temp){ //if the letter is correct
-                        statusChoose.setText("correct");
-                        correctletters = CorrectLetters.AddCorrectLetters();
-                        labelcorrectletters.setText(String.valueOf(correctletters*100/(correctletters + falseletters) + "%"));
-                        ArrayList<percentageletterposition> list2 =PossibleWords.showstatistics();
-                        points = Points.Points(number, splited[1], list2);
-                        labelPoints.setText(String.valueOf(points));
-                        char[] myChars = S.toCharArray();
-                        myChars[number-1] = splited[1].charAt(0);
-                        S = String.valueOf(myChars);
-                        word.showSave(S);
-                        if(!S.contains("_")){
-                            statusChoose.setText("You won");
-                            lastfivegames.addlastfivegames(S , Tries , 1, points);
-                        }
-                        labelWord.setText(S);
-                        PossibleWords.correctletter(splited[1].charAt(0),number);
-                        list2 =PossibleWords.statistics();
-                        listview.getItems().clear();
-                        for ( percentageletterposition plp : list2) {
-                            listview.getItems().add(plp.toString());
-                        }
-                    }
-                    else{
-                        lives = Lives.RemoveLives();
-                        labelLives.setText(String.valueOf(lives));
-                        falseletters = falseletters + 1 ;
-                        labelcorrectletters.setText(String.valueOf(correctletters*100/(correctletters + falseletters) + "%"));
-                        switch (lives){
-                            case 5:
-                                System.out.println("5");
-                                Image image5 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/one.png");
-                                imageHangman.setImage(image5);
-                                break;
-                            case 4:
-                                Image image4 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/two.png");
-                                imageHangman.setImage(image4);
-                                break;
-                            case 3:
-                                Image image3 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/three.png");
-                                imageHangman.setImage(image3);
-                                break;
-                            case 2:
-                                Image image2 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/four.png");
-                                imageHangman.setImage(image2);
-                                break;
-                            case 1:
-                                Image image1 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/five.png");
-                                imageHangman.setImage(image1);
-                                break;
-                            case 0:
-                                Image image0 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/six.png");
-                                imageHangman.setImage(image0);
-                                break;
-                        }
-                        statusChoose.setText("false");
-                        points = Points.RemovePoints();
-                        labelPoints.setText(String.valueOf(points));
-                        if(lives == 0){
-                            statusChoose.setText("You lost");
-                            S = word.hiddenWord();
-                            word.showSave(S);
-                            labelWord.setText(S);
-                            Image image = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/six.png");
-                            imageHangman.setImage(image);
-                            points = 0;
+            if(d.DictionaryLength()==0){
+                statusChoose.setText("You need to load a dictionary");
+                return ;
+            }
+            if(word.hiddenWord().length()== 0){
+                statusChoose.setText("You need to click start first");
+                return ;
+            }
+            else {
+                try {
+                    int number = Integer.parseInt(splited[0]);
+                    char character = word.showWord().charAt(number - 1);
+                    if (number <= 0 || number > word.hiddenWord().length()) {
+                        statusChoose.setText("there is not this position");
+                    } else if (character != '_') {
+                        statusChoose.setText("You already find this position");
+                    } else if (splited[1].length() != 1) {
+                        statusChoose.setText("You need a letter");
+                    } else {
+                        Tries = Tries + 1;
+                        statusChoose.setText(" ");
+                        splited[1] = splited[1].toUpperCase();
+                        boolean temp = FindLetter.find(word.hiddenWord(), splited[1], number - 1); //check if the letter is correct
+                        if (temp) { //if the letter is correct
+                            statusChoose.setText("correct");
+                            correctletters = CorrectLetters.AddCorrectLetters();
+                            labelcorrectletters.setText(String.valueOf(correctletters * 100 / (correctletters + falseletters) + "%"));
+                            ArrayList<percentageletterposition> list2 = PossibleWords.showstatistics();
+                            points = Points.Points(number, splited[1], list2);
                             labelPoints.setText(String.valueOf(points));
-                            lastfivegames.addlastfivegames(S , Tries , 0, points);
-                        }
-                        PossibleWords.falseletter(splited[1].charAt(0),number);
-                        ArrayList<percentageletterposition> list2 =PossibleWords.statistics();
-                        listview.getItems().clear();
-                        for ( percentageletterposition plp : list2) {
-                            listview.getItems().add(plp.toString());
+                            char[] myChars = S.toCharArray();
+                            myChars[number - 1] = splited[1].charAt(0);
+                            S = String.valueOf(myChars);
+                            word.showSave(S);
+                            if (!S.contains("_")) {
+                                statusChoose.setText("You won");
+                                lastfivegames.addlastfivegames(S, Tries, 1, 0, points);
+                            }
+                            labelWord.setText(S);
+                            PossibleWords.correctletter(splited[1].charAt(0), number);
+                            list2 = PossibleWords.statistics();
+                            listview.getItems().clear();
+                            for (percentageletterposition plp : list2) {
+                                listview.getItems().add(plp.toString());
+                            }
+                        } else {
+                            lives = Lives.RemoveLives();
+                            labelLives.setText(String.valueOf(lives));
+                            falseletters = falseletters + 1;
+                            labelcorrectletters.setText(String.valueOf(correctletters * 100 / (correctletters + falseletters) + "%"));
+                            switch (lives) {
+                                case 5:
+                                    System.out.println("5");
+                                    Image image5 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/one.png");
+                                    imageHangman.setImage(image5);
+                                    break;
+                                case 4:
+                                    Image image4 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/two.png");
+                                    imageHangman.setImage(image4);
+                                    break;
+                                case 3:
+                                    Image image3 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/three.png");
+                                    imageHangman.setImage(image3);
+                                    break;
+                                case 2:
+                                    Image image2 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/four.png");
+                                    imageHangman.setImage(image2);
+                                    break;
+                                case 1:
+                                    Image image1 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/five.png");
+                                    imageHangman.setImage(image1);
+                                    break;
+                                case 0:
+                                    Image image0 = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/six.png");
+                                    imageHangman.setImage(image0);
+                                    break;
+                            }
+                            statusChoose.setText("false");
+                            points = Points.RemovePoints();
+                            labelPoints.setText(String.valueOf(points));
+                            if (lives == 0) {
+                                statusChoose.setText("You lost");
+                                S = word.hiddenWord();
+                                word.showSave(S);
+                                labelWord.setText(S);
+                                Image image = new Image("C:/Users/30698/IdeaProjects/hangman/src/main/resources/images/six.png");
+                                imageHangman.setImage(image);
+                                points = 0;
+                                labelPoints.setText(String.valueOf(points));
+                                lastfivegames.addlastfivegames(S, Tries, 0, 1, points);
+                            }
+                            PossibleWords.falseletter(splited[1].charAt(0), number);
+                            ArrayList<percentageletterposition> list2 = PossibleWords.statistics();
+                            listview.getItems().clear();
+                            for (percentageletterposition plp : list2) {
+                                listview.getItems().add(plp.toString());
+                            }
                         }
                     }
+                } catch (NumberFormatException nfe) {
+                    statusChoose.setText("You need to write the position and a letter");
                 }
-            } catch (NumberFormatException nfe) {
-                statusChoose.setText("You need to write the position and a letter.0");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            statusChoose.setText("You need to write the position and a letter.9");
+            statusChoose.setText("You need to write the position and a letter");
         }
     }
     public void buttonLoad(ActionEvent event) throws IOException{

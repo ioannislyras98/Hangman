@@ -7,6 +7,7 @@ package com.example.hangman;
  */
 public class RoundStats{
     private int wins;
+    private int defeats;
     private String selectedwords;
     private int tries;
     private int highscore;
@@ -17,9 +18,11 @@ public class RoundStats{
      * @param selectedwords
      * @param highscore
      * @param tries
+     * @param defeats
      */
-    public RoundStats(int wins, String selectedwords, int tries, int highscore){
+    public RoundStats(int wins, int defeats, String selectedwords, int tries, int highscore){
         this.wins = wins;
+        this.defeats = defeats;
         this.selectedwords = selectedwords;
         this.tries = tries;
         this.highscore = highscore;
@@ -32,6 +35,14 @@ public class RoundStats{
      */
     public int getwins(){
         return wins;
+    }
+    /**
+     * Getter for defeats from the object RoundStats
+     * @author johnlyras98
+     * @return int defeats
+     */
+    public int getdefeats(){
+        return defeats;
     }
     /**
      * Getter for selectedwords from the object RoundStats
