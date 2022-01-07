@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class Application extends javafx.application.Application {
 
     private static Stage stage ;
