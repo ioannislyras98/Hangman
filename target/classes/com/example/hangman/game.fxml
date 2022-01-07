@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="589.0" prefWidth="766.0" style="-fx-background-color: #53c68c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hangman.Controller">
+   <children>
+      <Label fx:id="labelHangman" layoutX="224.0" prefHeight="50.0" prefWidth="347.0" text="MediaLab Hangman">
+         <font>
+            <Font name="Cooper Black" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="89.0" prefHeight="28.0" prefWidth="161.0" text="Lives left          :">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelLives" layoutX="458.0" layoutY="88.0" prefHeight="25.0" prefWidth="11.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelWord" alignment="CENTER" layoutY="216.0" prefHeight="79.0" prefWidth="466.0">
+         <font>
+            <Font name="Comic Sans MS" size="52.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="118.0" prefHeight="28.0" prefWidth="161.0" text="Points                :">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPoints" layoutX="458.0" layoutY="117.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnChoose" layoutX="481.0" layoutY="487.0" mnemonicParsing="false" onAction="#buttonChoose" text="Choose">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="186.0" layoutY="488.0" text="Choose letter">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="148.0" prefHeight="28.0" prefWidth="161.0" text="Words               :">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelwords" layoutX="458.0" layoutY="147.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="298.0" layoutY="176.0" prefHeight="28.0" prefWidth="161.0" text="Correct letters :">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></Label>
+      <ImageView fx:id="imageHangman" fitHeight="161.0" fitWidth="220.0" layoutX="76.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="labelcorrectletters" layoutX="458.0" layoutY="175.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="labelletter" layoutX="313.0" layoutY="488.0" promptText="3 C">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <MenuBar layoutY="50.0" prefHeight="25.0" prefWidth="169.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Application">
+            <items>
+              <MenuItem fx:id="btnStart" mnemonicParsing="false" onAction="#btnStart" text="Start" />
+                  <MenuItem fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoad" text="Load" />
+                  <MenuItem fx:id="btnCreate" mnemonicParsing="false" onAction="#btnCreate" text="Create" />
+                  <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Details">
+            <items>
+              <MenuItem fx:id="DictionaryStats" mnemonicParsing="false" onAction="#DictionaryStats" text="Dictionary" />
+                  <MenuItem fx:id="btnRounds" mnemonicParsing="false" onAction="#btnRounds" text="Rounds" />
+                  <MenuItem fx:id="btnSolution" mnemonicParsing="false" onAction="#btnSolution" text="Solution" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ListView fx:id="listview" layoutX="520.0" layoutY="265.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="statusChoose" contentDisplay="CENTER" layoutX="100.0" layoutY="536.0" prefHeight="30.0" prefWidth="549.0" textFill="#dd1e08">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
