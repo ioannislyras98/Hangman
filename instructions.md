@@ -1,16 +1,16 @@
 # **Points:**
 
- • 5 points if the probability of the letter was greater than or equal to 0.6
+ • 5 points if the probability of the letter was greater than or equal to 0.6.
  
  • 10 points if the probability of the letter was less than 0.6 and
- greater than or equal to 0.4
+ greater than or equal to 0.4.
  
  • 15 points if the probability of the letter was less than 0.4 and
- greater than or equal to 0.25
+ greater than or equal to 0.25.
  
- • 30 points if the probability of the letter was less than 0.25
+ • 30 points if the probability of the letter was less than 0.25.
  
- • -15 points for each wrong choice
+ • -15 points for each wrong choice.
  
  • Points can never be negative.
  
@@ -30,3 +30,9 @@ a dictionary is enough:
  
  5. At least 20% of the words should consist of 9 or
  more letters.
+ 
+ # **Rules:**
+ 
+ - You have 6 lives.
+
+ - You need to type a number(position of the letter in the word)
