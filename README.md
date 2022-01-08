@@ -4,7 +4,8 @@ Simple hangman app for NTUA medialab course created with Java FX.
 
 To run this app,after cloning:
 you can have an Integrated Development Environment (IDE) for JVM like IntelliJ IDEA.
-Running this requires for you to have JavaFX installed in your computer.
+
+> Running this requires for you to have JavaFX installed in your computer.
 
 After this you should be able to see the image below:
 ![Screenshot (17)](https://user-images.githubusercontent.com/71226053/148414986-2c7981dd-ffff-4b2c-8bd0-c8c8c7bfbfcf.png)
