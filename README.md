@@ -23,5 +23,5 @@ Click Application and load.
  
  Now you can play and find the word.
  
- For further informations for the game see instructions.md
+> For further informations for the game see instructions.md
 
