@@ -34,5 +34,11 @@ a dictionary is enough:
  # **Rules:**
  
  - You have 6 lives.
+ - You choose letters 
 
- - You need to type a number(position of the letter in the word)
+ # **How to play:**
+ 
+ - You need to type a number (position of the letter in the word) and a letter.
+ - There is a list, which shows stats of words and positions, to help you.
+ 
+ # **How to play:**
