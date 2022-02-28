@@ -49,3 +49,16 @@ a dictionary is enough:
  Characters are sorted based on the probability that they are one of them the right choice for the given vacancy. This probability arises based on the percentage of words
  belonging to the subset of candidate hidden words and having in candidate vacancy the given character. A word belongs to this subset if has an equal number of characters
  and displays common characters with the hidden one word for positions for which the selection has already been made.
+ 
+ # **Menu bar:**
+ 
+ 1. Application:
+    - Start: Start a new hidden word based on the selected dictionary.
+    - Load: Type a dictionary-id that exists in medialab to load.
+    - Create: Type a dictionary-id of a book from https://openlibrary.org to be saved in medialab(e.g. for “A Game of Thrones, Book One of A Song of Ice and Fire ” is the 
+      “ OL31390631M ”).
+    - Exit: Termination of application.
+ 2. Details:
+    - Dictionary: The percentage of words in the active dictionary with 6 letters, 7 to 9 letters and 10 or more letters.
+    - Rounds: Shows the selected words, the number of attempts and the number of victories for the five latest completed games.
+    - Solution: Shows the hidden word and the game is listed as lost.
