@@ -60,5 +60,5 @@ a dictionary is enough:
     - Exit: Termination of application.
  2. Details:
     - Dictionary: The percentage of words in the active dictionary with 6 letters, 7 to 9 letters and 10 or more letters.
-    - Rounds: Shows the selected words, the number of attempts and the number of victories for the five latest completed games.
+    - Rounds: Shows the selected words, the number of attempts, the number of victories, the number of defeats and the high score of the five latest completed games.
     - Solution: Shows the hidden word and the game is listed as lost.
