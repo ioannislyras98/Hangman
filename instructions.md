@@ -34,11 +34,18 @@ a dictionary is enough:
  # **Rules:**
  
  - You have 6 lives.
- - You choose letters 
+ - Υou choose letters until you run out of lives.
+ - Ιf you run out of lives you lose.
+ - Οtherwise if you find the word before you run out of lives you win.
+ - Goals of the game are to collect the most points and find the most words.
 
  # **How to play:**
  
  - You need to type a number (position of the letter in the word) and a letter.
  - There is a list, which shows stats of words and positions, to help you.
  
- # **How to play:**
+ # **List:**
+ 
+ Characters are sorted based on the probability that they are one of them the right choice for the given vacancy. This probability arises based on the percentage of words
+ belonging to the subset of candidate hidden words and having in candidate vacancy the given character. A word belongs to this subset if has an equal number of characters
+ and displays common characters with the hidden one word for positions for which the selection has already been made.
